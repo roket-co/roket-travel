@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+<body>
+  <div id="map" style="width: 600px; height: 450px;"></div>
+  <script>
+    var map = L.map('map').setView([26.8206, 30.8025], 6); // Cairo coordinates, zoom level 7
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    
+    var cairo = L.marker([30.0444, 31.2357]).addTo(map);
+    var Pyramids= L.marker([29.9792, 31.2357]).addTo(map);
+    var GrandEgyptianMuseum= L.marker([29.9946, 31.1228]).addTo(map);
+    var Dendera = L.marker([26.1419, 32.6702]).addTo(map);
+    var ValleyOfTheKings = L.marker([25.7402, 32.6014]).addTo(map);
+    var luxor = L.marker([25.6842, 32.6358]).addTo(map);
+
+    cairo.bindPopup("<b>Cairo</b><br>Starting point of the tour.<br><img src='https://egyptianstreets.com/wp-content/uploads/2019/11/shutterstock_378011434.v1.jpg' width =200px>");
+    Pyramids.bindPopup("<b>Pyramids of Giza</b><br>Day2<br><img src='https://www.onthegotours.com/cdn-cgi/image/f=auto,q=80,w=384/repository/Sphinx-at-the-Pyramids-Egypt-Tours--On-The-Go-Tours-558401520421424.jpg' alt='Cairo Image' width =200px>");
+    GrandEgyptianMuseum.bindPopup("<b>Grand Egyptian Museum</b><br>Day3<br><img src='https://www.besix.com/-/media/images/projects/grand-egyptian-museum/update-march-2023/1004.jpg?mh=400&h=400&w=711&la=en&hash=2C1B0372D11E6AB321AF9E34DCD54370' alt='Luxor Image'  width =200px>");
+    Dendera.bindPopup("<b>Grand Egyptian Museum</b><br>Day4<br><img src='https://www.egyptologie.nl/wp-content/uploads/image.png' alt='Luxor Image'  width =200px>");
+    ValleyOfTheKings.bindPopup("<b>Valley Of The Kings</b><br>Day5<br><img src='https://www.planetware.com/photos-large/EGY/egypt-valley-of-the-kings-and-cliff-wall.jpg' alt='Luxor Image' width =200px>");
+    luxor.bindPopup("<b>Luxor</b><br>Ending point of the tour.<br><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_VhpgGdXJKTU8WcfasMubB5BcN9XvXq2O80u4fLehYg&s' alt='Luxor Image' width =200px>");
+
+    function onMapClick(e) {
+      var popup = L.popup();
+      popup.setLatLng(e.latlng).setContent("You clicked the map at " + e.latlng.toString()).openOn(map);
+    }
+
+    map.on('click', onMapClick);
+  </script>
+</body>
+</html>
